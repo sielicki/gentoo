@@ -7,7 +7,7 @@ DISTUTILS_OPTIONAL=1
 CMAKE_MIN_VERSION=3.8.7
 PYTHON_COMPAT=( python{2_7,3_5,3_6} )
 
-inherit cmake-utils distutils-r1
+inherit cmake-utils distutils-r1 llvm
 
 DESCRIPTION="assembly/assembler framework + bindings"
 HOMEPAGE="http://www.keystone-engine.org/"
@@ -58,6 +58,7 @@ src_prepare() {
 }
 
 src_configure() {
+	local libdir="$(get_libdir)"
 	local mycmakeargs=(
 		-DLLVM_LIBDIR_SUFFIX=${libdir#lib}
 
